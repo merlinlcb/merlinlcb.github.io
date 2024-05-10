@@ -8,128 +8,8 @@
   <!-- Semantic UI CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
   <!-- Custom CSS -->
-  <style>
-    /* Custom CSS styles */
-    body {
-      background-color: #343a40;
-      /* Bootstrap dark background color */
-      font-family: 'Courier New', Courier, monospace;
-      padding: 20px;
-    }
-
-    .ui.container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .ui.segment {
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      padding: 40px;
-      background-color: #373a3d;
-      /* White background for segments */
-      color: #333;
-      /* Text color */
-    }
-
-    h1.ui.header {
-      color: #fff;
-      /* White header text */
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    h2.ui.header {
-      color: #fff;
-      /* White header text */
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    p {
-      color: #ccc;
-      /* Light gray text */
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    p a {
-      color: #7fd1b9;
-      /* Mint green link color */
-    }
-
-    .ui.divider {
-      margin-top: 30px;
-      margin-bottom: 30px;
-      border-color: #7fd1b9;
-      /* Mint green divider color */
-    }
-
-    .ui.relaxed.list {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .ui.relaxed.list .item {
-      padding: 10px 0;
-    }
-
-    .description,
-    .ui.center.card,
-    .header {
-      color: #fff;
-      /* White header text */
-      text-align: center;
-      background-color: #373a3d;
-    }
-
-    .ui.relaxed.list .item a {
-      color: #7fd1b9;
-      /* Mint green link color */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 120px;
-      width: 120px;
-      border-radius: 50%;
-      background-color: #f0f0f0;
-    }
-
-    .ui.relaxed.list .item a:hover {
-      background-color: #ddd;
-    }
-
-    h3.header {
-      color: #fff !important;
-      font-family: 'Courier New', Courier, monospace;
-      /* White header text */
-    }
-
-
-
-
-    .ui.icon.envelope.icon,
-    .ui.icon.linkedin.icon,
-    .ui.icon.facebook.icon,
-    .ui.icon.discord.icon {
-      font-size: 120px;
-      color: #333;
-      /* Icon color */
-    }
-
-    /* Media query for smaller screens */
-    @media only screen and (max-width: 767px) {
-      .ui.relaxed.list .item a {
-        font-size: 80px;
-        height: 80px;
-        width: 80px;
-      }
-
-      .ui.relaxed.list .item i.huge.icon {
-        font-size: 80px !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="favicon.svg">
 </head>
 
 <body>
@@ -139,13 +19,13 @@
     <div class="ui centered grid segment">
       <div class="one column row">
         <div class="ui center card">
-          <a class="image">
+          <a class="image me">
             <img src="me.png">
           </a>
           <div class="content">
             <h3 class="header">Merlinlcb</h3>
             <div class="meta">
-              <p>System's Maintainer <br> UI/UX Developer <br> IT Professional</p>
+              <p>System's Administrator <br> UI/UX Developer <br> IT Professional</p>
               <div class="description">
                 This is a simple landing page created just for you. Here you can learn more about me and connect with
                 me.
@@ -155,10 +35,10 @@
         </div>
       </div>
     </div>
-    <div class="ui relaxed list">
+    <div class="ui relaxed list gitpanels">
       <div class="item">
         <a href="https://github.com/merlinlcb?tab=repositories">
-          <img align="center" 
+          <img align="center"
             src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=merlinlcb&langs_count=10&hide_title=true&hide_border=true&layout=compact&theme=dracula">
         </a>
       </div>
@@ -178,6 +58,11 @@
       <a href="https://discord.gg/clevoro-729943368364326952" aria-label="Clevoro" target="_blank">Clevoro</a> and
       occasionally teach STEM at public Libraries.
     </p>
+    <h2 class="ui header">Awards</h2>
+    <ol class="ui list">
+      <li class="center aligned" value="">Eagle Scout</li>
+      <li class="center aligned" value="">Excellence in Robotics</li>
+    </ol>
     <div class="ui divider"></div>
     <h2 class="ui header">Connect with Me</h2>
     <div class="ui relaxed list">
@@ -189,11 +74,6 @@
       <div class="item">
         <a href="https://www.linkedin.com/in/lehi-bennett-b03220308/" aria-label="LinkedIn" target="_blank">
           <i class="teal huge icon linkedin"></i>
-        </a>
-      </div>
-      <div class="item">
-        <a href="https://www.facebook.com/merlinlcb/" aria-label="Facebook" target="_blank">
-          <i class="blue huge icon facebook"></i>
         </a>
       </div>
       <div class="item">
