@@ -6,6 +6,11 @@
         padding: 20px;
     }
 
+    .certification {
+        max-width: 125%;
+        height: auto;
+    }
+
     .ui.container {
         max-width: 800px;
         margin: 0 auto;
@@ -49,6 +54,7 @@
         border-color: #7fd1b9;
         /* Mint green divider color */
     }
+    
 
     .ui.relaxed.list {
         display: flex;
@@ -61,8 +67,9 @@
 
     .description,
     .ui.center.card,
-    .header {
-        color: #fff;
+    .header,
+    .name {
+        color: #fff !important;
         /* White header text */
         text-align: center;
         background-color: #373a3d;
@@ -70,7 +77,7 @@
 
     .me img {
         border-radius: 50%;
-      }
+    }
 
     .ui.relaxed.list .item a {
         color: #7fd1b9;
@@ -82,6 +89,10 @@
         width: 120px;
         border-radius: 50%;
         background-color: #f0f0f0;
+    }
+    .card-inner-divider {
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
     }
 
     @media only screen and (max-width: 767px) {
@@ -123,4 +134,5 @@
         color: #fff !important;
         font-family: 'Courier New', Courier, monospace;
         /* White header text */
+        margin-bottom: 0px;
     }
