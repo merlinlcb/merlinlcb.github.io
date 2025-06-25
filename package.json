@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "export": "next export",
-    "predeploy": "npm run build && rm -rf docs && cp -r out docs && echo 'merlinlcb.com' > docs/CNAME",
+    "predeploy": "npm run build && touch ./out/.nojekyll && rm -rf docs && cp -r out docs && echo 'merlinlcb.com' > docs/CNAME",
     "deploy": "git add docs && git commit -m 'Deploy' && git push"
   },
   "dependencies": {
