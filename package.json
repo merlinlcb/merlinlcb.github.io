@@ -5,8 +5,8 @@
   "scripts": {
     "build": "next build",
     "export": "next export",
-    "predeploy": "npm run build && npm run export",
-    "deploy": "gh-pages -d out"
+    "predeploy": "npm run build && rm -rf docs && cp -r out docs && echo 'merlinlcb.com' > docs/CNAME",
+    "deploy": "git add docs && git commit -m 'Deploy' && git push"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
