@@ -246,12 +246,57 @@ export default function Home() {
                 >
                   <Image
                     src="https://images.credly.com/size/340x340/images/8090280a-311f-425f-a1cd-a32770b5a444/CompTIA_CSIS.png"
-                    alt="CIOS Certification"
+                    alt="CSIS Certification"
                     width={150}
                     height={150}
                     className="rounded-lg shadow-md"
                   />
                   <p className="text-center mt-2 text-sm font-medium">CSIS</p>
+                </a>
+                                <a
+                  href="https://www.credly.com/badges/e709af35-8564-4376-b1f3-3f57dbfa48ba/public_url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block transition-transform hover:scale-105"
+                >
+                  <Image
+                    src="https://images.credly.com/size/340x340/images/b2e3c623-cc4a-4f0c-8a3b-aa6231e138fe/blob"
+                    alt="Cloud+ Certification"
+                    width={150}
+                    height={150}
+                    className="rounded-lg shadow-md"
+                  />
+                  <p className="text-center mt-2 text-sm font-medium">Cloud+</p>
+                </a>
+                                <a
+                  href="https://www.credly.com/badges/841f01dd-d646-4743-819e-7e53d591cddf/public_url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block transition-transform hover:scale-105"
+                >
+                  <Image
+                    src="https://images.credly.com/size/340x340/images/9f54bf46-dc18-408c-a74e-2637facd1856/CompTIA_CSCP.png"
+                    alt="CSCP Certification"
+                    width={150}
+                    height={150}
+                    className="rounded-lg shadow-md"
+                  />
+                  <p className="text-center mt-2 text-sm font-medium">CSCP</p>
+                </a>
+                                <a
+                  href="https://www.credly.com/badges/e709af35-8564-4376-b1f3-3f57dbfa48ba/public_url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block transition-transform hover:scale-105"
+                >
+                  <Image
+                    src="https://images.credly.com/size/340x340/images/18218ce6-e7d4-4479-9500-b7499645b763/CompTIA_CCAP.png"
+                    alt="CCAP Certification"
+                    width={150}
+                    height={150}
+                    className="rounded-lg shadow-md"
+                  />
+                  <p className="text-center mt-2 text-sm font-medium">CCAP</p>
                 </a>
               </div>
             </TabsContent>
