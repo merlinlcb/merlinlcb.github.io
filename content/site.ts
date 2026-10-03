@@ -39,10 +39,11 @@ export const profile = {
   handle: "merlinlcb",
   roles: ["Systems Administrator", "IT Professional", "UI/UX Developer"],
   tagline:
-    "I keep systems running, networks secure, and users happy — and I build clean interfaces on top of it all.",
+    "I keep systems running, identities secure, and users happy, and I build the tools that automate the rest.",
   about: [
-    "I'm an IT professional with a foundation in Computer Information Systems and a career that's taken me from the help desk to the core of carrier-scale infrastructure. I started in Tier 1 support and was almost immediately moved up to Tier 2 escalation work. From there I moved into development, writing and maintaining production code in a COBOL-style legacy language, and then into a switch consultant role, managing the in-memory databases across 500+ network switches spanning the West Coast.",
-    "Today I work in healthcare IT. My title is Tier 2 technician, but the job spans three roles: DevOps engineer, Linux systems administrator, and service desk. Every step of the way I've learned to diagnose fast, communicate clearly, and fix problems so they stay fixed.",
+    "I'm an IT professional with 11+ years of experience and a foundation in Computer Information Systems. My career has covered support, software development, and database administration at carrier scale. I started in Tier 1 support and was almost immediately moved up to Tier 2 escalation work. From there I moved into development, writing and maintaining production code in a COBOL-style legacy language, and then into a switch consultant role, administering the in-memory databases across 500+ network switches spanning the West Coast.",
+    "Today I'm a Help Desk Technician II at a multi-clinic healthcare organization in Idaho's Treasure Valley, where my work spans the service desk and systems administration. I manage identity and access across a hybrid Active Directory and Entra ID environment, scripting bulk provisioning in PowerShell and rolling out hardware security key MFA. I administer the organization's VMware Horizon virtual desktop platform, and I'm the escalation point for complex support issues.",
+    "I also build the internal tools my team relies on: Python and Flask apps, usually containerized with Docker, that automate onboarding and staff changes through our ITSM platform's API, back up and search the knowledge base, and flag unanswered tickets in real time. I created the organization's AI governance registry, which documents ownership, guardrails, and risk reviews for the AI tools staff use. All of it is built with HIPAA and patient-data protection in mind. Every step of the way I've learned to diagnose fast, communicate clearly, and fix problems so they stay fixed.",
     "I back that experience with a deep bench of industry credentials across Linux, networking, security, and cloud, plus multiple CompTIA stackable specialist and professional certifications. Whether it's hardening infrastructure or polishing a UI, I care about doing the job right.",
   ],
   email: "merlinlcb@duck.com",
@@ -57,9 +58,24 @@ export const profile = {
 /** Areas of strength, shown as cards under "What I bring". */
 export const strengths = [
   {
-    title: "Systems & Infrastructure",
-    description: "Linux administration and DevOps work in production healthcare environments, backed by A+, LFS101, and CompTIA IT Operations Specialist.",
+    title: "Identity & Access",
+    description: "Active Directory and Entra ID administration, PowerShell automation for bulk provisioning, and hardware security key MFA rollouts.",
+    icon: "key",
+  },
+  {
+    title: "Infrastructure & VDI",
+    description: "VMware Horizon virtual desktops, Linux administration, and Docker, backed by A+, LFS101, and CompTIA IT Operations Specialist.",
     icon: "server",
+  },
+  {
+    title: "Automation & Tooling",
+    description: "Python, Flask, and REST APIs: building the internal apps that take repetitive work off the service desk.",
+    icon: "code",
+  },
+  {
+    title: "Security & Compliance",
+    description: "Security+ certified, working daily under HIPAA, and author of an AI governance registry for safe AI adoption.",
+    icon: "shield",
   },
   {
     title: "Networking",
@@ -67,13 +83,8 @@ export const strengths = [
     icon: "network",
   },
   {
-    title: "Security",
-    description: "Security+ certified with Secure Infrastructure Specialist and Secure Cloud Professional credentials.",
-    icon: "shield",
-  },
-  {
     title: "Cloud",
-    description: "Cloud+ certified, with CompTIA Cloud Admin Professional recognition for running workloads in the cloud.",
+    description: "Cloud+ certified, with CompTIA Cloud Admin and Secure Cloud Professional credentials.",
     icon: "cloud",
   },
 ] as const

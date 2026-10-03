@@ -6,10 +6,12 @@ import {
   Award as AwardIcon,
   Bot,
   Cloud,
+  Code,
   Github,
   Gitlab,
   GraduationCap,
   Heart,
+  KeyRound,
   Linkedin,
   Mail,
   Medal,
@@ -35,7 +37,7 @@ const awardIcons: Record<Award["icon"], typeof Medal> = {
   heart: Heart,
 }
 
-const strengthIcons = { server: Server, network: Network, shield: ShieldCheck, cloud: Cloud }
+const strengthIcons = { key: KeyRound, server: Server, code: Code, network: Network, shield: ShieldCheck, cloud: Cloud }
 
 const socials = [
   { label: "Email", href: `mailto:${profile.email}`, icon: Mail },
@@ -75,7 +77,7 @@ export default async function Home() {
     { value: String(certifications.length), label: "Industry certifications" },
     { value: String(comptia), label: "CompTIA credentials" },
     { value: String(awards.length), label: "Awards & honors" },
-    { value: "Sec+", label: "Security certified" },
+    { value: "11+", label: "Years in IT" },
   ]
 
   return (
