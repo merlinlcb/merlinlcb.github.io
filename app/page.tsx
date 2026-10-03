@@ -6,10 +6,12 @@ import {
   Award as AwardIcon,
   Bot,
   Cloud,
+  Code,
   Github,
   Gitlab,
   GraduationCap,
   Heart,
+  KeyRound,
   Linkedin,
   Mail,
   Medal,
@@ -18,13 +20,12 @@ import {
   Server,
   Shield,
   ShieldCheck,
-  FolderGit2,
   Star,
   Trophy,
   Users,
 } from "lucide-react"
 import ThemeToggle from "@/components/theme-toggle"
-import { getGitHubStats, languageColor } from "@/lib/github"
+import { getGitHubStats } from "@/lib/github"
 import { awards, certifications, community, profile, strengths, type Award } from "@/content/site"
 
 const awardIcons: Record<Award["icon"], typeof Medal> = {
@@ -36,7 +37,7 @@ const awardIcons: Record<Award["icon"], typeof Medal> = {
   heart: Heart,
 }
 
-const strengthIcons = { server: Server, network: Network, shield: ShieldCheck, cloud: Cloud }
+const strengthIcons = { key: KeyRound, server: Server, code: Code, network: Network, shield: ShieldCheck, cloud: Cloud }
 
 const socials = [
   { label: "Email", href: `mailto:${profile.email}`, icon: Mail },
@@ -76,7 +77,7 @@ export default async function Home() {
     { value: String(certifications.length), label: "Industry certifications" },
     { value: String(comptia), label: "CompTIA credentials" },
     { value: String(awards.length), label: "Awards & honors" },
-    { value: "Sec+", label: "Security certified" },
+    { value: "11+", label: "Years in IT" },
   ]
 
   return (
@@ -326,15 +327,17 @@ export default async function Home() {
         {github && (
           <section className="container pb-20">
             <SectionHeading eyebrow="Open source" title="On GitHub" />
-            <div className="grid gap-4 lg:grid-cols-[1fr_1.4fr]">
-              <div className="flex flex-col gap-4">
-                <dl className="grid grid-cols-3 overflow-hidden rounded-2xl border bg-card">
+            <div className="grid gap-4 lg:grid-cols-[1fr_2.2fr]">
+                <dl className="grid grid-cols-3 overflow-hidden rounded-2xl border bg-card lg:grid-cols-1">
                   {[
                     { label: "Public repos", value: github.publicRepos },
                     { label: "Languages", value: github.languageCount },
                     { label: "Followers", value: github.followers },
                   ].map((s, i) => (
-                    <div key={s.label} className={`p-5 text-center ${i > 0 ? "border-l" : ""}`}>
+                    <div
+                      key={s.label}
+                      className={`flex flex-col justify-center p-5 text-center ${i > 0 ? "border-l lg:border-l-0 lg:border-t" : ""}`}
+                    >
                       <dt className="sr-only">{s.label}</dt>
                       <dd className="font-display text-2xl font-bold text-primary">{s.value}</dd>
                       <dd className="mt-1 text-xs text-muted-foreground">{s.label}</dd>
@@ -342,14 +345,14 @@ export default async function Home() {
                   ))}
                 </dl>
                 {github.languages.length > 0 && (
-                  <div className="flex-1 rounded-2xl border bg-card p-6">
+                  <div className="flex flex-col justify-center rounded-2xl border bg-card p-6">
                     <h3 className="mb-4 font-display font-semibold">Top languages</h3>
                     <div className="flex h-2.5 overflow-hidden rounded-full bg-muted" aria-hidden>
                       {github.languages.map((l) => (
                         <span key={l.name} style={{ width: `${l.percent}%`, backgroundColor: l.color }} />
                       ))}
                     </div>
-                    <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                    <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-[13px] sm:grid-cols-3 sm:gap-x-6 sm:text-sm">
                       {github.languages.map((l) => (
                         <li key={l.name} className="flex items-center gap-2">
                           <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: l.color }} aria-hidden />
@@ -360,44 +363,6 @@ export default async function Home() {
                     </ul>
                   </div>
                 )}
-              </div>
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {github.recent.map((repo) => (
-                  <li key={repo.name}>
-                    <a
-                      href={repo.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex h-full flex-col rounded-2xl border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40"
-                    >
-                      <span className="flex items-center gap-2 font-display font-semibold">
-                        <FolderGit2 className="h-4 w-4 shrink-0 text-primary" />
-                        <span className="truncate">{repo.name}</span>
-                        <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
-                      </span>
-                      <span className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                        {repo.description ?? "No description yet."}
-                      </span>
-                      <span className="mt-auto flex items-center gap-4 pt-4 text-xs text-muted-foreground">
-                        {repo.language && (
-                          <span className="flex items-center gap-1.5">
-                            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: languageColor(repo.language) }} aria-hidden />
-                            {repo.language}
-                          </span>
-                        )}
-                        {repo.stars > 0 && (
-                          <span className="flex items-center gap-1">
-                            <Star className="h-3 w-3" /> {repo.stars}
-                          </span>
-                        )}
-                        <span className="ml-auto">
-                          Updated {new Date(repo.pushedAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </section>
         )}
