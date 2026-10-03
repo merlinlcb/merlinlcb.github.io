@@ -1,37 +1,37 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { profile, certifications } from "@/content/site"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" })
+
+const description = `${profile.name} — ${profile.roles.join(", ")}. ${certifications.length} industry certifications across Linux, networking, security, and cloud.`
 
 export const metadata: Metadata = {
-  title: "Lehi Bennett | Personal Portfolio",
-  description:
-    "Personal portfolio and landing page for Lehi Bennett, System's Administrator, UI/UX Developer, and IT Professional.",
-    generator: 'v0.dev'
+  metadataBase: new URL("https://merlinlcb.com"),
+  title: `${profile.name} | ${profile.roles[0]}`,
+  description,
+  openGraph: {
+    title: `${profile.name} | ${profile.roles[0]}`,
+    description,
+    url: "https://merlinlcb.com",
+    images: ["/me.png"],
+    type: "profile",
+  },
+  icons: { icon: "/favicon.svg" },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.svg" />
-      </head>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body className={`${inter.variable} ${display.variable} font-sans`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
-
-
-import './globals.css'
