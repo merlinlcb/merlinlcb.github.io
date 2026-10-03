@@ -9,32 +9,16 @@
 
 export type LanguageShare = { name: string; percent: number; color: string }
 
-export type RepoSummary = {
-  name: string
-  description: string | null
-  url: string
-  language: string | null
-  stars: number
-  pushedAt: string
-}
-
 export type GitHubStats = {
   publicRepos: number
   languageCount: number
   followers: number
   languages: LanguageShare[]
-  recent: RepoSummary[]
 }
 
 type ApiRepo = {
   name: string
-  description: string | null
-  html_url: string
-  language: string | null
-  stargazers_count: number
-  pushed_at: string
   fork: boolean
-  archived: boolean
   languages_url: string
 }
 
@@ -115,31 +99,14 @@ export async function getGitHubStats(username: string): Promise<GitHubStats | nu
         ]
       : []
 
-    const recent: RepoSummary[] = own
-      .filter((r) => !r.archived && r.name.toLowerCase() !== username.toLowerCase())
-      .slice(0, 4)
-      .map((r) => ({
-        name: r.name,
-        description: r.description,
-        url: r.html_url,
-        language: r.language,
-        stars: r.stargazers_count,
-        pushedAt: r.pushed_at,
-      }))
-
     return {
       publicRepos: user.public_repos,
       languageCount: byteTotals.size,
       followers: user.followers,
       languages,
-      recent,
     }
   } catch (err) {
     console.warn(`[github] stats unavailable, hiding section: ${(err as Error).message}`)
     return null
   }
-}
-
-export function languageColor(name: string | null) {
-  return (name && LANGUAGE_COLORS[name]) || FALLBACK_COLOR
 }
