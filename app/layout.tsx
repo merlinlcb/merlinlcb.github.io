@@ -24,9 +24,29 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
 }
 
+// GitHub Pages can't send security headers, so the policy is delivered as a <meta> tag.
+// Next's static export relies on inline scripts, hence 'unsafe-inline' for scripts.
+// If you add images from a new site, add its origin to img-src.
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://images.credly.com https://github-readme-stats-sigma-five.vercel.app",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'none'",
+  "upgrade-insecure-requests",
+].join("; ")
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {process.env.NODE_ENV === "production" && <meta httpEquiv="Content-Security-Policy" content={csp} />}
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+      </head>
       <body className={`${inter.variable} ${display.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
