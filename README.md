@@ -1,6 +1,6 @@
 # merlinlcb.com
 
-Personal site for merlinlcb — built with Next.js + Tailwind, exported as a static site, and deployed to GitHub Pages automatically.
+Personal site for Lehi Bennett — built with Next.js + Tailwind, exported as a static site, and deployed to GitHub Pages automatically.
 
 ## Updating the site
 
