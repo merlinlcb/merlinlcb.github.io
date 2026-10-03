@@ -35,7 +35,7 @@ export type Award = {
 }
 
 export const profile = {
-  name: "Lehi Bennett",
+  name: "Merlinlcb",
   handle: "merlinlcb",
   roles: ["Systems Administrator", "IT Professional", "UI/UX Developer"],
   tagline:
