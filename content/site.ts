@@ -41,7 +41,8 @@ export const profile = {
   tagline:
     "I keep systems running, networks secure, and users happy — and I build clean interfaces on top of it all.",
   about: [
-    "I'm an IT professional with a foundation in Computer Information Systems and hands-on experience in telecommunications. I've worked every layer of the support stack — from customer care specialist to repair service attendant — and that front-line experience taught me to diagnose fast, communicate clearly, and fix problems so they stay fixed.",
+    "I'm an IT professional with a foundation in Computer Information Systems and a career that's taken me from the help desk to the core of carrier-scale infrastructure. I started in Tier 1 support and was almost immediately moved up to Tier 2 escalation work. From there I moved into development, writing and maintaining production code in a COBOL-style legacy language, and then into a switch consultant role, managing the in-memory databases across 500+ network switches spanning the West Coast.",
+    "Today I work in healthcare IT. My title is Tier 2 technician, but the job spans three roles: DevOps engineer, Linux systems administrator, and service desk. Every step of the way I've learned to diagnose fast, communicate clearly, and fix problems so they stay fixed.",
     "I back that experience with a deep bench of industry credentials across Linux, networking, security, and cloud, plus multiple CompTIA stackable specialist and professional certifications. Whether it's hardening infrastructure or polishing a UI, I care about doing the job right.",
   ],
   email: "merlinlcb@duck.com",
@@ -57,12 +58,12 @@ export const profile = {
 export const strengths = [
   {
     title: "Systems & Infrastructure",
-    description: "Linux administration, hardware, and operating systems — certified across A+, LFS101, and CompTIA IT Operations Specialist.",
+    description: "Linux administration and DevOps work in production healthcare environments, backed by A+, LFS101, and CompTIA IT Operations Specialist.",
     icon: "server",
   },
   {
     title: "Networking",
-    description: "Designing, troubleshooting, and maintaining networks, grounded in Network+ and real-world telecom experience.",
+    description: "Managed the in-memory databases of 500+ network switches across the West Coast, grounded in Network+.",
     icon: "network",
   },
   {
