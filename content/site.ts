@@ -114,8 +114,7 @@ export const certifications: Certification[] = [
     name: "CCAP",
     fullName: "CompTIA Cloud Admin Professional",
     issuer: "CompTIA",
-    // NOTE: this link is identical to the Cloud+ one below — swap in the CCAP share link from Credly.
-    url: "https://www.credly.com/badges/e709af35-8564-4376-b1f3-3f57dbfa48ba/public_url",
+    url: "https://www.credly.com/badges/d91f57ad-0b97-43b3-8a77-9555ba4a5c31/public_url",
     image: "https://images.credly.com/size/340x340/images/18218ce6-e7d4-4479-9500-b7499645b763/CompTIA_CCAP.png",
   },
   {

@@ -18,11 +18,13 @@ import {
   Server,
   Shield,
   ShieldCheck,
+  FolderGit2,
   Star,
   Trophy,
   Users,
 } from "lucide-react"
 import ThemeToggle from "@/components/theme-toggle"
+import { getGitHubStats, languageColor } from "@/lib/github"
 import { awards, certifications, community, profile, strengths, type Award } from "@/content/site"
 
 const awardIcons: Record<Award["icon"], typeof Medal> = {
@@ -65,7 +67,8 @@ function external(href: string) {
   return href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {}
 }
 
-export default function Home() {
+export default async function Home() {
+  const github = await getGitHubStats(profile.handle)
   const issuers = new Set(certifications.map((c) => c.issuer)).size
   const comptia = certifications.filter((c) => c.issuer === "CompTIA").length
 
@@ -319,33 +322,85 @@ export default function Home() {
           </div>
         </section>
 
-        {/* GitHub */}
-        <section className="container pb-20">
-          <SectionHeading eyebrow="Open source" title="On GitHub" />
-          <div className="grid gap-4 lg:grid-cols-2">
-            {[
-              {
-                alt: "Top languages",
-                src: `https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=${profile.handle}&langs_count=10&hide_title=true&hide_border=true&layout=compact&bg_color=00000000&title_color=34d399&text_color=94a3b8`,
-              },
-              {
-                alt: "GitHub stats",
-                src: `https://github-readme-stats-sigma-five.vercel.app/api?username=${profile.handle}&hide_border=true&hide_title=true&hide=stars&show_icons=true&count_private=true&bg_color=00000000&icon_color=34d399&text_color=94a3b8`,
-              },
-            ].map((card) => (
-              <a
-                key={card.alt}
-                href={`${profile.links.github}?tab=repositories`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center rounded-2xl border bg-card p-6 transition-colors hover:border-primary/40"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={card.src} alt={card.alt} loading="lazy" className="w-full max-w-md" />
-              </a>
-            ))}
-          </div>
-        </section>
+        {/* GitHub — stats are fetched from the GitHub API at build time (lib/github.ts) */}
+        {github && (
+          <section className="container pb-20">
+            <SectionHeading eyebrow="Open source" title="On GitHub" />
+            <div className="grid gap-4 lg:grid-cols-[1fr_1.4fr]">
+              <div className="flex flex-col gap-4">
+                <dl className="grid grid-cols-3 overflow-hidden rounded-2xl border bg-card">
+                  {[
+                    { label: "Public repos", value: github.publicRepos },
+                    { label: "Languages", value: github.languageCount },
+                    { label: "Followers", value: github.followers },
+                  ].map((s, i) => (
+                    <div key={s.label} className={`p-5 text-center ${i > 0 ? "border-l" : ""}`}>
+                      <dt className="sr-only">{s.label}</dt>
+                      <dd className="font-display text-2xl font-bold text-primary">{s.value}</dd>
+                      <dd className="mt-1 text-xs text-muted-foreground">{s.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {github.languages.length > 0 && (
+                  <div className="flex-1 rounded-2xl border bg-card p-6">
+                    <h3 className="mb-4 font-display font-semibold">Top languages</h3>
+                    <div className="flex h-2.5 overflow-hidden rounded-full bg-muted" aria-hidden>
+                      {github.languages.map((l) => (
+                        <span key={l.name} style={{ width: `${l.percent}%`, backgroundColor: l.color }} />
+                      ))}
+                    </div>
+                    <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      {github.languages.map((l) => (
+                        <li key={l.name} className="flex items-center gap-2">
+                          <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: l.color }} aria-hidden />
+                          <span className="truncate">{l.name}</span>
+                          <span className="ml-auto tabular-nums text-muted-foreground">{l.percent.toFixed(1)}%</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {github.recent.map((repo) => (
+                  <li key={repo.name}>
+                    <a
+                      href={repo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex h-full flex-col rounded-2xl border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40"
+                    >
+                      <span className="flex items-center gap-2 font-display font-semibold">
+                        <FolderGit2 className="h-4 w-4 shrink-0 text-primary" />
+                        <span className="truncate">{repo.name}</span>
+                        <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                      </span>
+                      <span className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                        {repo.description ?? "No description yet."}
+                      </span>
+                      <span className="mt-auto flex items-center gap-4 pt-4 text-xs text-muted-foreground">
+                        {repo.language && (
+                          <span className="flex items-center gap-1.5">
+                            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: languageColor(repo.language) }} aria-hidden />
+                            {repo.language}
+                          </span>
+                        )}
+                        {repo.stars > 0 && (
+                          <span className="flex items-center gap-1">
+                            <Star className="h-3 w-3" /> {repo.stars}
+                          </span>
+                        )}
+                        <span className="ml-auto">
+                          Updated {new Date(repo.pushedAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {/* Contact */}
         <section id="contact" className="container pb-24">
