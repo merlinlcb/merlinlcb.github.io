@@ -92,8 +92,8 @@ export const strengths = [
 /** Community involvement. */
 export const community = [
   {
-    title: "Volunteer at Clevoro",
-    description: "Contributing time and technical know-how to the Clevoro community.",
+    title: "Volunteer at ATWD",
+    description: "Contributing time and technical know-how to the All Things Web Development community.",
     url: "https://discord.gg/clevoro-729943368364326952",
   },
   {
