@@ -332,7 +332,7 @@ export default async function Home() {
                   {[
                     { label: "Public repos", value: github.publicRepos },
                     { label: "Languages", value: github.languageCount },
-                    { label: "Followers", value: github.followers },
+                    ...(github.privateRepos !== null ? [{ label: "Private repos", value: github.privateRepos }] : []),
                   ].map((s, i) => (
                     <div
                       key={s.label}

@@ -1,7 +1,11 @@
 /**
- * Pulls public GitHub stats at build time (no third-party services, nothing
- * fetched in the visitor's browser). The deploy workflow passes GITHUB_TOKEN
- * for a higher API rate limit and rebuilds weekly so the numbers stay fresh.
+ * Pulls GitHub stats at build time (no third-party services, nothing fetched
+ * in the visitor's browser). The deploy workflow rebuilds weekly so the
+ * numbers stay fresh.
+ *
+ * With STATS_TOKEN (a read-only token for the account) private repos are
+ * counted and their languages included; only totals are published, never repo
+ * names. Without it, falls back to public repos via GITHUB_TOKEN.
  *
  * If the API is unreachable the function returns null and the page simply
  * hides the GitHub section instead of failing the build.
@@ -11,14 +15,17 @@ export type LanguageShare = { name: string; percent: number; color: string }
 
 export type GitHubStats = {
   publicRepos: number
+  /** null when no STATS_TOKEN was available, so private repos can't be seen */
+  privateRepos: number | null
   languageCount: number
-  followers: number
   languages: LanguageShare[]
 }
 
 type ApiRepo = {
   name: string
   fork: boolean
+  private: boolean
+  owner: { login: string }
   languages_url: string
 }
 
@@ -54,12 +61,15 @@ const LANGUAGE_COLORS: Record<string, string> = {
 const FALLBACK_COLOR = "#8b949e"
 const MAX_LANGUAGES = 6
 
+const STATS_TOKEN = process.env.STATS_TOKEN
+const TOKEN = STATS_TOKEN || process.env.GITHUB_TOKEN
+
 async function gh<T>(path: string): Promise<T> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
   }
-  if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
+  if (TOKEN) headers.Authorization = `Bearer ${TOKEN}`
 
   const url = path.startsWith("http") ? path : `https://api.github.com${path}`
   const res = await fetch(url, { headers, cache: "force-cache" })
@@ -67,12 +77,23 @@ async function gh<T>(path: string): Promise<T> {
   return res.json() as Promise<T>
 }
 
+async function allPages<T>(path: string): Promise<T[]> {
+  const out: T[] = []
+  for (let page = 1; ; page++) {
+    const batch = await gh<T[]>(`${path}${path.includes("?") ? "&" : "?"}per_page=100&page=${page}`)
+    out.push(...batch)
+    if (batch.length < 100) return out
+  }
+}
+
 export async function getGitHubStats(username: string): Promise<GitHubStats | null> {
   try {
-    const [user, repos] = await Promise.all([
-      gh<{ public_repos: number; followers: number }>(`/users/${username}`),
-      gh<ApiRepo[]>(`/users/${username}/repos?per_page=100&type=owner&sort=pushed`),
-    ])
+    // /user/repos (authenticated) is the only listing that includes private repos.
+    const repos = STATS_TOKEN
+      ? (await allPages<ApiRepo>(`/user/repos?affiliation=owner&visibility=all`)).filter(
+          (r) => r.owner.login.toLowerCase() === username.toLowerCase(),
+        )
+      : await allPages<ApiRepo>(`/users/${username}/repos?type=owner`)
 
     const own = repos.filter((r) => !r.fork)
 
@@ -100,9 +121,9 @@ export async function getGitHubStats(username: string): Promise<GitHubStats | nu
       : []
 
     return {
-      publicRepos: user.public_repos,
+      publicRepos: repos.filter((r) => !r.private).length,
+      privateRepos: STATS_TOKEN ? repos.filter((r) => r.private).length : null,
       languageCount: byteTotals.size,
-      followers: user.followers,
       languages,
     }
   } catch (err) {

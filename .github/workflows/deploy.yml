@@ -31,6 +31,8 @@ jobs:
       - run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optional read-only token so private repos count toward the stats (see README).
+          STATS_TOKEN: ${{ secrets.STATS_TOKEN }}
       - run: npm run typecheck
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1

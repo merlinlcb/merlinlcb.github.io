@@ -27,7 +27,7 @@ Counts in the hero/stats update automatically.
 
 ## GitHub stats
 
-The "On GitHub" section (repo count, languages used, followers, and a top-languages breakdown — no links to individual repos) is pulled straight from the GitHub API when the site builds (`lib/github.ts`); there's no third-party stats service. The workflow rebuilds every Monday to keep it current, and you can trigger a refresh anytime from **Actions → Deploy site → Run workflow**. Only public, non-fork repos are counted. If the API is ever unreachable, the section is hidden for that build instead of breaking the site.
+The "On GitHub" section (public and private repo counts, languages used, and a top-languages breakdown — no names of or links to individual repos) is pulled straight from the GitHub API when the site builds (`lib/github.ts`); there's no third-party stats service. The workflow rebuilds every Monday to keep it current, and you can trigger a refresh anytime from **Actions → Deploy site → Run workflow**. Languages come from your own non-fork repos. Private repos are included when the repo has a `STATS_TOKEN` Actions secret: a fine-grained token for your account with **All repositories** and only the default **Metadata: read-only** permission. Without that secret, only public repos are counted and the private-repo count is hidden. If the API is ever unreachable, the section is hidden for that build instead of breaking the site.
 
 ## Local development (optional)
 
