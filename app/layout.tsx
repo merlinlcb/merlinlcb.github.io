@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     images: ["/me.png"],
     type: "profile",
   },
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon.svg", apple: "/apple-touch-icon.png" },
 }
 
 // GitHub Pages can't send security headers, so the policy is delivered as a <meta> tag.

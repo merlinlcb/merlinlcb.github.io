@@ -1,12 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 57 480 480" width="64" height="64">
-<style>
-  .m1{stroke:#87AD65} .m2{stroke:#64AD8C} .d1{stroke:#B5E8C9} .d2{stroke:#64AD8C} .tip{fill:#B5E8C9}
-  @media (prefers-color-scheme: light) { .d1{stroke:#448165} .tip{fill:#448165} }
-</style>
-<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="34">
-  <path class="m1" d="M66 360 L198 84 L270 228"/>
-  <path class="m2" d="M474 360 L342 84 L270 228"/>
-  <polygon class="d1" points="270,228 342,372 270,500 198,372" stroke-width="30"/>
-  <polygon class="d2" points="270,316 300,372 270,428 240,372" stroke-width="24"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="52 84 396 396"><defs><clipPath id="fl"><rect width="250" height="500"/></clipPath>
+<clipPath id="fr"><rect x="250" width="250" height="500"/></clipPath></defs>
+
+<g fill="#87AD65"><polygon points="68.81,345.00 192.21,98.20 245.53,204.85 239.38,217.14 192.21,122.80 85.67,335.87"/><polygon points="245.53,204.85 228.76,238.39 222.61,226.09 239.38,192.55"/><polygon points="97.94,329.23 192.21,140.69 234.91,226.09 228.76,238.39 192.21,165.28 114.80,320.10"/><polygon points="97.94,329.23 143.93,304.32 152.51,287.17 106.52,312.07"/><polygon points="127.07,313.45 192.21,183.17 228.76,256.28 222.61,268.57 192.21,207.77 143.93,304.32"/></g>
+<g fill="#64AD8C" transform="translate(500 0) scale(-1 1)"><polygon points="68.81,345.00 192.21,98.20 245.53,204.85 239.38,217.14 192.21,122.80 85.67,335.87"/><polygon points="245.53,204.85 228.76,238.39 222.61,226.09 239.38,192.55"/><polygon points="97.94,329.23 192.21,140.69 234.91,226.09 228.76,238.39 192.21,165.28 114.80,320.10"/><polygon points="97.94,329.23 143.93,304.32 152.51,287.17 106.52,312.07"/><polygon points="127.07,313.45 192.21,183.17 228.76,256.28 222.61,268.57 192.21,207.77 143.93,304.32"/></g>
+<polygon points="250,213.8 293.09000000000003,300 250,386.18 206.91,300" fill="#87AD65" clip-path="url(#fl)"/>
+<polygon points="250,213.8 293.09000000000003,300 250,386.18 206.91,300" fill="#64AD8C" clip-path="url(#fr)"/>
+<polygon points="250,213.8 293.09000000000003,300 250,386.18 206.91,300" fill="none" stroke="#B5E8C9" stroke-width="7" stroke-linejoin="round"/>
+<polygon points="250,262.08 271.55,300 250,337.92 228.45,300" fill="none" stroke="#448165" stroke-width="6" stroke-linejoin="round"/>
+<circle cx="250" cy="300" r="5" fill="#F0F5F1"/></svg>
